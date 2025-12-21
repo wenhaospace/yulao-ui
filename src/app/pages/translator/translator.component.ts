@@ -6,6 +6,7 @@ import { HttpService } from '../../services/http/http.service';
 import { TranslationRequest } from './model/TranslationRequest';
 import { TranslationResponse } from './model/TranslationResponse';
 import { debounceTime, Subject } from 'rxjs';
+import { agentUrl } from '../../configuration/properties';
 
 @Component({
   selector: 'app-translator',
@@ -45,7 +46,7 @@ export class TranslatorComponent {
     };
     console.log(request);
 
-    this.httpService.setBaseUrl('http://localhost:8000');
+    this.httpService.setBaseUrl(agentUrl);
     this.httpService.post<TranslationResponse>('/translate', request)
       .subscribe(
         response => {
