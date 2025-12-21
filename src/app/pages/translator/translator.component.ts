@@ -49,7 +49,7 @@ export class TranslatorComponent {
     this.httpService.post<TranslationResponse>('/translate', request)
       .subscribe(
         response => {
-          this.translatedText = response.translated_text;
+          this.translatedText = this.removeThinkTags(response.translated_text);
         },
         error => {
           console.error('Translation error:', error); 
@@ -74,4 +74,13 @@ export class TranslatorComponent {
     [this.fromLang, this.toLang] = [this.toLang, this.fromLang];
     [this.inputText, this.translatedText] = [this.translatedText, this.inputText];
   }
+
+
+
+  // 工具方法
+  // 移除文本中的<think>.*?<\/think>标签里的内容
+  removeThinkTags(text: string): string {
+    return text.replace(/<think>.*?<\/think>/gs, '').replace(/^\s+/, '');
+  }
+
 }
