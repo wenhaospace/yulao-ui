@@ -1,0 +1,38 @@
+<div class="translator">
+  <!-- 语言选择栏 -->
+  <div class="controls">
+    <!-- 源语言 -->
+    <select [(ngModel)]="fromLang" (change)="onLanguageChange()" class="select-lang">
+      <option *ngFor="let lang of languages" [value]="lang.code">{{ lang.name }}</option>
+    </select>
+
+    <!-- 交换按钮 -->
+    <button (click)="swapLanguages()" class="btn-swap" aria-label="Swap languages">
+      ⇄
+    </button>
+
+    <!-- 目标语言 -->
+    <select [(ngModel)]="toLang" (change)="onLanguageChange()" class="select-lang">
+      <option *ngFor="let lang of languages" [value]="lang.code">{{ lang.name }}</option>
+    </select>
+  </div>
+
+  <!-- 输入与输出区域 -->
+  <div class="translation-area">
+    <!-- 输入区 -->
+    <textarea
+      class="text-box"
+      placeholder="输入要翻译的文本..."
+      [(ngModel)]="inputText"
+      (input)="translate()"
+    ></textarea>
+
+    <!-- 输出区 -->
+    <textarea
+      class="text-box"
+      placeholder="翻译结果将显示在这里..."
+      [value]="translatedText"
+      readonly
+    ></textarea>
+  </div>
+</div>
