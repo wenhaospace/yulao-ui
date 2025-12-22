@@ -25,11 +25,8 @@ export class HomeComponent {
 
   projects = [
     { title: '智能翻译', description: '基于Qwen3实现的多语言翻译应用', link: '/translator' },
-    { title: 'Project B', description: 'A description of Project B.', link: '/' },
+    { title: '网页阅读助手(开发中)', description: '总结页面主要内容，可用于快速学习或查阅技术文档 ', link: '/' },
     { title: 'Project C', description: 'A description of Project C.', link: '/' },
-    { title: '翻译', description: '基于Qwen3实现的多语言翻译应用', link: '/translator' },
-    { title: 'Project B', description: 'A description of Project B.', link: '/' },
-    { title: 'Project C', description: 'A description of Project C.', link: '/' }
   ];
 
   constructor(private httpService: HttpService) { }
