@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TranslatorComponent } from './pages/translator/translator.component';
+import { LayoutComponent } from './pages/common/layout/layout.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,11 @@ export const routes: Routes = [
     {
         path: 'translator',
         component:TranslatorComponent
+
+    },
+    {
+        path: 'layout',
+        component:LayoutComponent
 
     }
 ];

@@ -1,0 +1,17 @@
+<!-- heatmap 作为 background-fill，全屏展示 -->
+<div class="heatmap-bg" aria-hidden="true">
+  <div class="heatmap">
+    <div class="week" *ngFor="let week of weeks">
+      <div class="day"
+           *ngFor="let item of week"
+           [class.empty]="!item"
+           [class.level-0]="item && item.value === 0"
+           [class.level-1]="item && item.value === 1"
+           [class.level-2]="item && item.value === 2"
+           [class.level-3]="item && item.value === 3"
+           [class.level-4]="item && item.value >= 4"
+           [attr.title]="item ? (item.date | date:'yyyy-MM-dd') + ': ' + item.value : ''">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+/* ...existing code... */
+.heatmap {
+  display: flex;
+  gap: 6px;
+  padding: 10px;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.day {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #ebedf0;
+  transition: transform .15s, opacity .15s;
+}
+
+.day:hover {
+  transform: scale(1.2);
+  z-index: 2;
+}
+
+/* 空白（padding）格子 */
+.day.empty {
+  background: transparent;
+  opacity: 0.0;
+}
+
+/* 等级颜色（可按需求调整） */
+.day.level-0 { background: #ebedf0; }
+.day.level-1 { background: #c6e48b; }
+.day.level-2 { background: #7bc96f; }
+.day.level-3 { background: #239a3b; }
+.day.level-4 { background: #196127; }
+
+/* 响应式：缩小格子 */
+@media (max-width: 480px) {
+  .day { width: 10px; height: 10px; }
+  .heatmap { gap: 4px; }
+  .week { gap: 4px; }
+}
