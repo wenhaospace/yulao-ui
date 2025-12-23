@@ -25,8 +25,11 @@ export class HomeComponent {
 
   projects = [
     { title: '智能翻译', description: '基于Qwen3实现的多语言翻译应用', link: '/translator' },
-    { title: '网页阅读助手(开发中)', description: '总结页面主要内容，可用于快速学习或查阅技术文档 ', link: '/' },
-    { title: 'Project C', description: 'A description of Project C.', link: '/' },
+    { title: '速查笔记(开发中)', description: '记录个人实践随笔及常用命令', link: '/' },
+    { title: 'SQL生成与调优(调研中)', description: '辅助编写SQL, 支持Mysql, Oracle, Postgres', link: '/' },
+    { title: '农作物辅助种植(调研中)', description: '上传农作物图片，经过图片模型处理分析生长状态， 给出最佳养护指导', link: '/' },
+    { title: '公文简报写作(调研中)', description: '基于给定资料和公文模板，快速生成公务员简报', link: '/' },
+    { title: '网页阅读(搁置)', description: '总结页面主要内容，可用于快速学习或查阅技术文档 - 备注： 中文页面布局过于紧凑， 需要先做数据清洗后再调用大模型分析', link: '/' },
   ];
 
   constructor(private httpService: HttpService) { }
