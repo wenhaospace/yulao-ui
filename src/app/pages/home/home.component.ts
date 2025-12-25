@@ -17,9 +17,9 @@ export class HomeComponent {
   userList: User[] = [];
 
    personalInfo = {
-    name: '张文浩',
+    name: 'Zhang Wenhao',
     title: '全栈工程师',
-    description: '我是一名全栈工程师，擅长前端和后端开发，热爱编程和技术创新。',
+    description: '我是一名全栈工程师，擅长前端和后端开发，正在探索AI技术，热爱编程和技术创新。',
     contact: 'superwenhao.511@gmail.com'
   };
 
@@ -31,6 +31,7 @@ export class HomeComponent {
     { title: '公文简报写作(调研中)', description: '基于给定资料和公文模板，快速生成公务员简报', link: '/' },
     { title: '网页阅读(搁置)', description: '总结页面主要内容，可用于快速学习或查阅技术文档 - 备注： 中文页面布局过于紧凑， 需要先做数据清洗后再调用大模型分析', link: '/' },
     { title: '代码片段重构转换(开发中)', description: '用于重构相同逻辑的代码,SQL或格式, 例如： Java实体切换成Python实体; Java实体切换成对应的Json实体 ', link: '/' },
+    { title: '全球金融大盘跟踪分析面板(开发中)', description: '以大A, 港股， 美股总市值出发， 分析在不同基准汇率间的市值比例与增长幅度', link: '/' },
   ];
 
   constructor(private httpService: HttpService) { }
