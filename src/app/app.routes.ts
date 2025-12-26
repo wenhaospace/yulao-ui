@@ -4,6 +4,7 @@ import { AuthenticationComponent } from './pages/authentication/authentication.c
 import { LoginComponent } from './pages/login/login.component';
 import { TranslatorComponent } from './pages/translator/translator.component';
 import { LayoutComponent } from './pages/common/layout/layout.component';
+import { MyNoteComponent } from './pages/my-note/my-note.component';
 
 export const routes: Routes = [
     {
@@ -32,5 +33,9 @@ export const routes: Routes = [
         path: 'layout',
         component:LayoutComponent
 
+    },
+    {
+        path: 'mynote',
+        component:MyNoteComponent
     }
 ];

@@ -1,0 +1,39 @@
+
+<div class="main">
+    <div class="main-container">
+        <div class="header"> 全部 </div>
+        <div class="note-container">
+            <div class="note-card" *ngFor="let note of notes">
+                <p class="note-description">{{ note.description }}</p>
+                <a class="note-link" [href]="note.url" target="_blank">查看详情 - {{note.platform}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="classification">
+        <div class="classification-item">
+            <div class="header">
+                标签分类
+            </div>
+            
+            <span class="tag">Java</span>
+            <span class="tag">VSCode</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">FRP</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">更多...</span>
+            
+        </div>
+        <div class="classification-item">
+            <div class="header">
+                时间分类
+            </div>
+            <span class="tag">2025年12月</span>  
+        </div>
+    </div>
+</div>
+
+
+
+
+
