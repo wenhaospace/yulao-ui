@@ -2,12 +2,17 @@
 <div class="main">
     <div class="main-container">
         <div class="header"> 全部 </div>
-        <div class="note-container">
+        <div class="note-container" *ngIf="notes && notes.length > 0; else noNotes">
             <div class="note-card" *ngFor="let note of notes">
                 <p class="note-description">{{ note.description }}</p>
                 <a class="note-link" [href]="note.url" target="_blank">查看详情 - {{note.platform}}</a>
             </div>
         </div>
+        <ng-template #noNotes>
+            <div class="no-notes">
+                <p>暂无笔记，请稍后再试。</p>
+            </div>
+        </ng-template>
     </div>
     <div class="classification">
         <div class="classification-item">
