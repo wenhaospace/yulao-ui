@@ -26,6 +26,7 @@ export class HomeComponent {
   projects = [
     { title: '智能翻译', description: '基于Qwen3实现的多语言翻译应用', link: '/translator' },
     { title: '速查笔记', description: '记录个人实践随笔及常用命令', link: '/mynote' },
+    { title: '个人AI助手(开发中)', description: '基于Langgraph构建个人辅助智能体', link: '/' },
     { title: 'SQL生成与调优(调研中)', description: '辅助编写SQL, 支持Mysql, Oracle, Postgres', link: '/' },
     { title: '农作物辅助种植(调研中)', description: '上传农作物图片，经过图片模型处理分析生长状态， 给出最佳养护指导', link: '/' },
     { title: '公文简报写作(调研中)', description: '基于给定资料和公文模板，快速生成公务员简报', link: '/' },
