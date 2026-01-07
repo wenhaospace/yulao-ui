@@ -38,10 +38,10 @@ export class HomeComponent {
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpService.post<HttpResponse>(API_ENDPOINTS.users.getAll, null).subscribe((response:HttpResponse) => {
-      this.userList = response.data;
-      console.log(response);
-    });
+    // this.httpService.post<HttpResponse>(API_ENDPOINTS.users.getAll, null).subscribe((response:HttpResponse) => {
+    //   this.userList = response.data;
+    //   console.log(response);
+    // });
   }
 
 }
