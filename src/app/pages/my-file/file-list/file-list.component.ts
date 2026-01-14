@@ -3,7 +3,11 @@ import { Component } from '@angular/core';
 import { HttpService } from '../../../services/http/http.service';
 import { baseUrl } from '../../../configuration/properties';
 import { MyHttpResponse } from '../../../services/common/MyHttpResponse';
-import { File } from '../model/File';
+import { FileVo } from '../model/FileVo';
+
+// 引入 Base64 工具
+import { Base64 } from 'js-base64';
+
 
 @Component({
   selector: 'app-file-list',
@@ -13,7 +17,7 @@ import { File } from '../model/File';
   styleUrl: './file-list.component.css'
 })
 export class FileListComponent {
-      files: File[] = [];
+      files: FileVo[] = [];
     
       constructor(private httpService: HttpService) {
         httpService.setBaseUrl(baseUrl)
@@ -21,7 +25,7 @@ export class FileListComponent {
       }
   
       fetchFiles() {
-        this.httpService.get<MyHttpResponse<File[]>>('files/all').subscribe((response) => {
+        this.httpService.get<MyHttpResponse<FileVo[]>>('files/all').subscribe((response) => {
           if (response.code !== 200) {
             console.error('Failed to load files:', response.message);
             return;
@@ -39,8 +43,10 @@ export class FileListComponent {
           }
           // Handle the loaded file data
           const fileUrl = response.data;
-  
-          window.open(fileUrl, '_blank');
+
+          // 使用 Base64.encode 编码原始 URL
+          const encodedUrl = Base64.encode(fileUrl);
+          window.open('http://47.245.100.81:8012/onlinePreview?url='+ encodeURIComponent(encodedUrl), '_blank');
         });
       }
   

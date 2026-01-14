@@ -1,1 +1,82 @@
-<p>file-management works!</p>
+<section class="file-management-official">
+  <header class="page-header">
+    <h5>资料库管理</h5>
+    <p>当前共 {{ files.length }} 个文件，可进行查看、删除等操作。</p>
+  </header>
+
+  <!-- 工具栏 -->
+    <div class="dropzone" 
+        (dragover)="onDragOver($event)" 
+        (drop)="onDrop($event)">
+        将文件拖至此处上传
+    </div>
+    <div class="toolbar">
+        <!-- 新增：上传按钮 -->
+        <button type="button" class="btn-upload" (click)="onUploadClick()">
+            上传文件
+        </button>
+        <!-- 隐藏的文件输入框 -->
+        <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" [multiple]="true">
+
+        <button 
+        type="button" 
+        class="btn-delete" 
+        [disabled]="selectedFiles.size === 0"
+        (click)="openBatchDeleteConfirm()">
+        批量删除 ({{ selectedFiles.size }})
+        </button>
+    </div>
+
+  <!-- 文件表格 -->
+  <div class="files-table">
+    <div class="table-header">
+      <div class="col select"><input type="checkbox" (change)="toggleAll($event)"></div>
+      <div class="col filename">文件名称</div>
+      <div class="col date">创建时间</div>
+      <div class="col action">操作</div>
+    </div>
+
+    <div class="table-body">
+      <div class="table-row" *ngFor="let file of files" [class.selected]="isSelected(file)">
+        <div class="col select">
+          <input type="checkbox" [checked]="isSelected(file)" (change)="toggleSelection(file)">
+        </div>
+        <div class="col filename">{{ file.fileName }}</div>
+        <div class="col date">{{ file.createTime }}</div>
+        <div class="col action">
+          <button type="button" class="btn-view" (click)="viewFile(file.id)">查看</button>
+          <button type="button" class="btn-remove" (click)="openSingleDeleteConfirm(file)">删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 空状态 -->
+  <div class="empty-state" *ngIf="files.length === 0">
+    <p>暂无任何文件记录</p>
+  </div>
+</section>
+
+<!-- 删除确认模态框（简化版弹窗） -->
+<div class="modal-backdrop" *ngIf="showConfirmModal" (click)="closeConfirmModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h6>确认删除文件？</h6>
+    </div>
+    <div class="modal-body">
+      <p>
+        您即将删除以下文件：
+      </p>
+      <ul class="confirm-file-list">
+        <li *ngFor="let f of filesToBeDeleted">{{ f.fileName }}</li>
+      </ul>
+      <p class="warning-text">
+        ⚠️ 此操作不可撤销，文件将永久移除。
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" (click)="closeConfirmModal()">取消</button>
+      <button type="button" class="btn-danger" (click)="confirmDelete()">确认删除</button>
+    </div>
+  </div>
+</div>
