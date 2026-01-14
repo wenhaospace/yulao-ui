@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { TranslatorComponent } from './pages/translator/translator.component';
 import { LayoutComponent } from './pages/common/layout/layout.component';
 import { MyNoteComponent } from './pages/my-note/my-note.component';
+import { MyFileComponent } from './pages/my-file/my-file.component';
 
 export const routes: Routes = [
     {
@@ -37,5 +38,9 @@ export const routes: Routes = [
     {
         path: 'mynote',
         component:MyNoteComponent
+    },
+    {
+        path: 'myfile',
+        component:MyFileComponent
     }
 ];
