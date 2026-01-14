@@ -1,0 +1,29 @@
+<section class="files-section-official">
+  <header class="section-header">
+    <h6>我的资料库</h6>
+    <p>共 {{ files.length }} 个文件 | 最近更新：{{ lastUpdateTime | date:'yyyy-MM-dd HH:mm' }}</p>
+  </header>
+
+  <div class="files-table">
+    <div class="table-header">
+      <div class="col filename">文件名称</div>
+      <div class="col date">创建时间</div>
+      <div class="col action">操作</div>
+    </div>
+
+    <div class="table-body">
+      <div class="table-row" *ngFor="let file of files">
+        <div class="col filename">{{ file.fileName }}</div>
+        <div class="col date">{{ file.createTime | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+        <div class="col action">
+          <button type="button" class="btn-view" (click)="viewFile(file.id)">查看</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 空状态 -->
+  <div class="empty-state" *ngIf="files.length === 0">
+    <p>暂无文件记录</p>
+  </div>
+</section>
