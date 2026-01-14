@@ -4,6 +4,7 @@ import { FileVo } from '../model/FileVo';
 import { HttpService } from '../../../services/http/http.service';
 import { baseUrl } from '../../../configuration/properties';
 import { MyHttpResponse } from '../../../services/common/MyHttpResponse';
+import { Base64 } from 'js-base64';
 
 
 
@@ -71,7 +72,7 @@ export class FileManagementComponent {
         if (response.code === 200) {
           console.log('上传成功:', response.data);
           // 示例：成功后更新列表
-          
+          this.fetchFiles();
         } else {
           console.error('上传失败:', response.message);
         }
@@ -124,7 +125,19 @@ export class FileManagementComponent {
   }
 
   viewFile(id: string) {
-    console.log('查看文件:', id);
+    // Implement file viewing logic here
+    this.httpService.get<MyHttpResponse<string>>(`files/presigned-url/${id}`).subscribe((response) => {
+      if (response.code !== 200) {
+        console.error('Failed to load file:', response.message);
+        return;
+      }
+      // Handle the loaded file data
+      const fileUrl = response.data;
+
+      // 使用 Base64.encode 编码原始 URL
+      const encodedUrl = Base64.encode(fileUrl);
+      window.open('http://47.245.100.81:8012/onlinePreview?url='+ encodeURIComponent(encodedUrl), '_blank');
+    });
   }
 
   // 单个删除确认
@@ -150,7 +163,15 @@ export class FileManagementComponent {
     this.files = this.files.filter(f => !idsToDelete.includes(f.id));
     this.selectedFiles = new Set([...this.selectedFiles].filter(id => !idsToDelete.includes(id)));
 
-    console.log('已删除:', idsToDelete);
-    this.closeConfirmModal();
+    this.httpService.post<MyHttpResponse<string>>('files/delete', { fileIds: idsToDelete }).subscribe(
+      (response) => {
+        if (response.code === 200) {
+          console.log('删除成功:', response.data);
+          this.closeConfirmModal();
+        } else {
+          console.error('删除失败:', response.message);
+        }
+      }
+    );
   }
 }
