@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-my-file',
@@ -10,19 +11,16 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './my-file.component.css'
 })
 export class MyFileComponent {
+ private authService = inject(AuthService);
 
   // 模拟权限（实际可从服务或 token 解析）
   canViewList = true;
-  canManage = this.hasPermission('manage_library');
+  canManage = this.hasPermission();
 
-  constructor() {
-    
-  }
 
-  private hasPermission(role: string): boolean {
+  private hasPermission(): boolean {
     // 示例：从 localStorage、AuthService 等获取权限
-    const permissions = ['view_library', 'manage_library'];
-    return permissions.includes(role);
+    return this.authService.canAccess('file.manage');
   }
   
 

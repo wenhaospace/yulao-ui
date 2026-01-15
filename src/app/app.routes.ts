@@ -8,6 +8,7 @@ import { MyNoteComponent } from './pages/my-note/my-note.component';
 import { MyFileComponent } from './pages/my-file/my-file.component';
 import { FileListComponent } from './pages/my-file/file-list/file-list.component';
 import { FileManagementComponent } from './pages/my-file/file-management/file-management.component';
+import { permissionGuard } from './services/guards/permission.guard';
 
 export const routes: Routes = [
     {
@@ -47,13 +48,18 @@ export const routes: Routes = [
         children: [
             {
                 path: 'list',
-                component: FileListComponent
+                component: FileListComponent,
+                canActivate: [permissionGuard],
+                data: { permission: 'file.view' } // 访问此路由需要 file.view 权限
             },
             {
                 path: 'management',
-                component: FileManagementComponent
+                component: FileManagementComponent,
+                canActivate: [permissionGuard],
+                data: { permission: 'file.manage' } // 需要 file.manage 权限
             },
             { path: '', redirectTo: 'list', pathMatch: 'full' }, // 默认跳转到 list
         ]
-    }
+    },
+    { path: '**', redirectTo: '/home' }
 ];
