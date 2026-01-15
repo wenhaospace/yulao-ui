@@ -25,7 +25,7 @@ export class FileListComponent {
       }
   
       fetchFiles() {
-        this.httpService.get<MyHttpResponse<FileVo[]>>('files/all').subscribe((response) => {
+        this.httpService.get<MyHttpResponse<FileVo[]>>('/files/all').subscribe((response) => {
           if (response.code !== 200) {
             console.error('Failed to load files:', response.message);
             return;
@@ -36,7 +36,7 @@ export class FileListComponent {
   
       viewFile(fileId: string) {
         // Implement file viewing logic here
-        this.httpService.get<MyHttpResponse<string>>(`files/presigned-url/${fileId}`).subscribe((response) => {
+        this.httpService.get<MyHttpResponse<string>>(`/files/presigned-url/${fileId}`).subscribe((response) => {
           if (response.code !== 200) {
             console.error('Failed to load file:', response.message);
             return;

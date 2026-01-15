@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FileVo } from '../model/FileVo';
 import { HttpService } from '../../../services/http/http.service';
 import { baseUrl } from '../../../configuration/properties';
 import { MyHttpResponse } from '../../../services/common/MyHttpResponse';
 import { Base64 } from 'js-base64';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 
@@ -15,8 +17,10 @@ import { Base64 } from 'js-base64';
   templateUrl: './file-management.component.html',
   styleUrl: './file-management.component.css'
 })
-export class FileManagementComponent {
+export class FileManagementComponent implements OnInit{
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  private httpService = inject(HttpService);
+  private router = inject(Router);
 
   files: FileVo[] = [];
 
@@ -24,13 +28,26 @@ export class FileManagementComponent {
   showConfirmModal = false;
   filesToBeDeleted: FileVo[] = [];
 
-  constructor(private httpService: HttpService) {
-    httpService.setBaseUrl(baseUrl)
+
+  ngOnInit(): void {
+    this.setupRouteListener();
+    this.httpService.setBaseUrl(baseUrl);
     this.fetchFiles();
+    
+  }
+
+  setupRouteListener() {
+    // 监听所有导航结束事件
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe(() => {
+      console.log('Navigation ended, refetching data...');
+      this.fetchFiles(); // 每次回来都重载数据
+    });
   }
 
   fetchFiles() {
-    this.httpService.get<MyHttpResponse<FileVo[]>>('files/all').subscribe((response) => {
+    this.httpService.get<MyHttpResponse<FileVo[]>>('/files/all').subscribe((response) => {
       if (response.code !== 200) {
         console.error('Failed to load files:', response.message);
         return;
@@ -67,7 +84,7 @@ export class FileManagementComponent {
     formData.append('file', file);
 
     // 调用 HttpClient 发送到后端
-    this.httpService.post<MyHttpResponse<string>>('files/upload', formData).subscribe(
+    this.httpService.post<MyHttpResponse<string>>('/files/upload', formData).subscribe(
       (response) => {
         if (response.code === 200) {
           console.log('上传成功:', response.data);
@@ -126,7 +143,7 @@ export class FileManagementComponent {
 
   viewFile(id: string) {
     // Implement file viewing logic here
-    this.httpService.get<MyHttpResponse<string>>(`files/presigned-url/${id}`).subscribe((response) => {
+    this.httpService.get<MyHttpResponse<string>>(`/files/presigned-url/${id}`).subscribe((response) => {
       if (response.code !== 200) {
         console.error('Failed to load file:', response.message);
         return;
@@ -163,7 +180,7 @@ export class FileManagementComponent {
     this.files = this.files.filter(f => !idsToDelete.includes(f.id));
     this.selectedFiles = new Set([...this.selectedFiles].filter(id => !idsToDelete.includes(id)));
 
-    this.httpService.post<MyHttpResponse<string>>('files/delete', { fileIds: idsToDelete }).subscribe(
+    this.httpService.post<MyHttpResponse<string>>('/files/delete', { fileIds: idsToDelete }).subscribe(
       (response) => {
         if (response.code === 200) {
           console.log('删除成功:', response.data);
