@@ -1,0 +1,24 @@
+<div class="verify-container">
+  <h2>🔐 临时访问认证</h2>
+  <p>请输入认证数字里令牌以获取临时权限：</p>
+
+  <input
+    type="number"
+    [(ngModel)]="code"
+    placeholder="例如：123456"
+    class="code-input"
+  />
+
+  <div class="help-text">
+    <!-- <small>
+      提示：8844=管理权限，5566=编辑权限，1122=只读权限
+    </small> -->
+    <small>
+      提示：可向管理员询问临时访问令牌
+    </small>
+  </div>
+
+  <button (click)="submit()" [disabled]="!code" class="btn-submit">
+    提交验证
+  </button>
+</div>

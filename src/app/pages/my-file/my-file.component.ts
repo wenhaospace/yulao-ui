@@ -15,13 +15,14 @@ export class MyFileComponent {
 
   // 模拟权限（实际可从服务或 token 解析）
   canViewList = true;
-  canManage = this.hasPermission();
+  // canManage = this.hasPermission();
+  canManage = true;
 
 
-  private hasPermission(): boolean {
-    // 示例：从 localStorage、AuthService 等获取权限
-    return this.authService.canAccess('file.manage');
-  }
+  // private hasPermission(): boolean {
+  //   // 示例：从 localStorage、AuthService 等获取权限
+  //   return this.authService.canAccess('file.manage');
+  // }
   
 
 

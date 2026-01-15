@@ -1,0 +1,39 @@
+.verify-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.code-input {
+  width: 80%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-submit:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.help-text {
+  color: #7f8c8d;
+  margin: 10px 0;
+}

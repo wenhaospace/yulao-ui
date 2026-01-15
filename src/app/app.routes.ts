@@ -9,6 +9,7 @@ import { MyFileComponent } from './pages/my-file/my-file.component';
 import { FileListComponent } from './pages/my-file/file-list/file-list.component';
 import { FileManagementComponent } from './pages/my-file/file-management/file-management.component';
 import { permissionGuard } from './services/guards/permission.guard';
+import { VerifyComponent } from './pages/verify/verify.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'verify',
+        component: VerifyComponent
     },
     {
         path: '',
