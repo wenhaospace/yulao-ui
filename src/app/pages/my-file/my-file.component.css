@@ -1,0 +1,78 @@
+/* 资料库主容器：左右布局 */
+.library-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* 左侧边栏 */
+.sidebar {
+  width: 260px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 15px;
+}
+
+.menu a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #bdc3c7;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.menu a:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.menu a.active {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 右侧内容区 */
+.content {
+  flex: 1;
+  padding: 24px;
+  background-color: #ffffff;
+  min-width: 0; /* 防止溢出的关键 */
+}
+
+/* 响应式：小屏幕下调整 */
+@media (max-width: 768px) {
+  .library-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .sidebar .logo {
+    font-size: 1.2em;
+  }
+  .content {
+    padding: 16px;
+  }
+}

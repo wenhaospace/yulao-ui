@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<div class="library-container">
+  <!-- 左侧导航 -->
+  <aside class="sidebar">
+    <h3 class="logo">资料库系统</h3>
+    <nav class="menu">
+      <a routerLink="list" routerLinkActive="active" *ngIf="canViewList">
+        资料列表
+      </a>
+      <a routerLink="management" routerLinkActive="active" *ngIf="canManage">
+        资料管理
+      </a>
+    </nav>
+  </aside>
+
+  <!-- 右侧内容区 -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
