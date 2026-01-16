@@ -157,6 +157,13 @@ export class FileManagementComponent implements OnInit{
     });
   }
 
+  downloadFile(id:string){
+
+  
+     
+  }
+
+
   // 单个删除确认
   openSingleDeleteConfirm(file: FileVo) {
     this.filesToBeDeleted = [file];

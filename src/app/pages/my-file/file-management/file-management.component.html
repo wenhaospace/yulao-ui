@@ -45,6 +45,7 @@
         <div class="col date">{{ file.createTime }}</div>
         <div class="col action">
           <button type="button" class="btn-view" (click)="viewFile(file.id)">查看</button>
+          <button type="button" class="btn-download" (click)="downloadFile(file.id)">下载</button>
           <button type="button" class="btn-remove" (click)="openSingleDeleteConfirm(file)">删除</button>
         </div>
       </div>

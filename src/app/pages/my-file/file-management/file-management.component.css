@@ -110,6 +110,18 @@
   &:hover { background-color: #1e428a; }
 }
 
+.btn-download{
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  color: #fff;
+  background-color: #388e3c;
+  border: 1px solid #2e7d32;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover { background-color: #2e7d32; }
+}
+
 .btn-remove {
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
