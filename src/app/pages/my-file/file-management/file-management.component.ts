@@ -157,11 +157,14 @@ export class FileManagementComponent implements OnInit{
     });
   }
 
-  downloadFile(id:string){
-
-  
-     
-  }
+  downloadFile(fileId: string): void {
+    const url = `${baseUrl}/files/download/${fileId}`;
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank'; // 可选
+    link.download = ''; // 表示希望下载而不是打开
+    link.click();
+}
 
 
   // 单个删除确认
