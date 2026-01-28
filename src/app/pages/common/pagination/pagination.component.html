@@ -1,0 +1,10 @@
+<div class="pagination">
+    <button class="pagination-btn" (click)="prevPage()" [disabled]="currentPage === 1">上一页</button>
+    <span class="pagination-info">
+        第 {{ currentPage }} 页 / 共 {{ totalPages }} 页
+    </span>
+    <span class="pagination-summary">
+        总条数：{{ totalItems }}，每页：{{ itemsPerPage }}
+    </span>
+    <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">下一页</button>
+</div>

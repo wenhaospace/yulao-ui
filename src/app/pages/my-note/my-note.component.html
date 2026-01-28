@@ -13,6 +13,12 @@
                 <p>暂无笔记，请稍后再试。</p>
             </div>
         </ng-template>
+        <app-pagination
+            [currentPage]="currentPage"
+            [itemsPerPage]="itemsPerPage"
+            [totalItems]="totalItems"
+            (pageChange)="onPageChange($event)">
+        </app-pagination>
     </div>
     <div class="classification">
         <div class="classification-item">
